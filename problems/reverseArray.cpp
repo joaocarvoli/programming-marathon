@@ -1,11 +1,15 @@
 #include <iostream>
+#include <math.h>
 
 using namespace std;
 
-void reverseArray(int array[], int amount){
-  for(int i = amount - 1; i >= 0; i--){
-    printf("%d ", array[i]);
+int* reverseArray(int array[], int amount){
+  for(int i = 0; i <= amount / 2; i++){
+    int temp = array[i];
+    array[i] = array[amount - i - 1];
+    array[amount - i - 1] = temp;
   }
+  return array;
 }
 
 int main(){
@@ -13,8 +17,13 @@ int main(){
   cin >> n;
   int arr[n];
   for(int i = 0; i < n; i++){
-    cin >> arr[i];
+    scanf("%d", &arr[i]);
   }
-  reverseArray(arr, n);
+  
+  int* arrResult = reverseArray(arr, n);
+  for(int i = 0; i < n; i++){
+    printf("%d ", arrResult[i]);
+  }
+
   return 0;
 }
