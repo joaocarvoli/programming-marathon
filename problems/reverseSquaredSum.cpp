@@ -1,45 +1,43 @@
-//Problem reference: https://practice.geeksforgeeks.org/problems/reverse-squared-sum/0
+// Problem reference: https://practice.geeksforgeeks.org/problems/reverse-squared-sum/0
+#include <iostream>
+#include <math.h>
 
-#include <stdio.h>
+using namespace std;
 
-int reverseSquaredSum(int array[], int n){
-    int result = array[n-1]*array[n-1];
-    bool signal = true;
+int reverseSquaredSum(int array[], int amount){
+  int sumArray = array[amount - 1]*array[amount - 1];
+  int op = true;
 
-    for(int i = n-2; i >= 0; i--){
-        if(signal){
-            result -= array[i]*array[i];
-            signal = false;
-        }
-        else{
-            result += array[i]*array[i];
-            signal = true;
-        }
+  for(int i = amount - 2; i >= 0; i--){
+    if(op == true){
+      sumArray -= array[i]*array[i];
+      op = false;
+    } else {
+      sumArray += array[i]*array[i];
+      op = true;
     }
-
-    return result;
+  }
+  return sumArray;
 }
 
 int main(){
+  int t;
+  int results[t];
+  cin >> t;
 
-    int t;
-    scanf("%d", &t);
-
-    int result[t];
-
+  for(int j = 0; j < t; j++){
     int n;
-    for(int i = 0; i < t; i++){
-
-        scanf("%d", &n);
-        int array[n];
-
-        for(int i = 0; i < n; i++){
-            scanf("%d", &array[i]);
-        }
-
-        result[i] = reverseSquaredSum(array, n);
+    cin >> n;
+    int arr[n];
+    for(int i = 0; i < n; i++){
+      scanf("%d", &arr[i]);
     }
+  
+    results[j] = reverseSquaredSum(arr, n);
+  }
+  
+  for(int i = 0; i < t; i++){
+    printf("%d\n", results[i]);
+  }
 
-    for(int i = 0; i < t; i++)
-        printf("result: %d\n", result[i]);
-}
+  return 0;
